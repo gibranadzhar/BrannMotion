@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrannMotion — Alight Motion Premium</title>
+    <!-- Fonts: Playfair Display, JetBrains Mono, Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Mobile-Specific Premium Styles & Overrides */
+        body {
+            background: #03060d; /* Slightly deeper void for premium feeling */
+        }
+        
+        /* Spacing */
+        .landing-container {
+            padding: 16px 14px;
+        }
+
+        /* Nav Bar - Compact & Glassmorphic */
+        .landing-nav {
+            padding: 12px 14px;
+            background: rgba(13, 20, 35, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .landing-logo {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        /* Compact icon buttons for mobile nav */
+        .btn-mono-compact {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-mono-compact:active {
+            transform: scale(0.95);
+            background: rgba(255, 94, 0, 0.15);
+            border-color: rgba(255, 94, 0, 0.4);
+            color: var(--color-primary);
+        }
+
+        .btn-user-nav {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-user-nav:active {
+            transform: scale(0.95);
+            background: rgba(255, 94, 0, 0.15);
+            border-color: rgba(255, 94, 0, 0.4);
+            color: var(--color-primary);
+        }
+
+        /* Forced 1-column layout for mobile */
+        .landing-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Hero */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .hero-title {
+            font-size: 32px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 40%, #ff7e36 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+
+        .hero-price-tag {
+            background: linear-gradient(135deg, rgba(255, 94, 0, 0.12) 0%, rgba(13, 20, 35, 0.4) 100%);
+            border: 1px solid rgba(255, 94, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 4px;
+            margin: 12px auto;
+            box-shadow: 0 8px 20px rgba(255, 94, 0, 0.04);
+        }
+
+        /* Features List - Beautiful Vertical Rows instead of squished grid */
+        .features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(13, 20, 35, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .feature-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255, 94, 0, 0.08);
+            border: 1px solid rgba(255, 94, 0, 0.25);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .feature-card-desc {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .social-community-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .social-badge {
+            flex: 1;
+            justify-content: center;
+            padding: 12px;
+            font-size: 12px;
+            border-radius: 12px;
+        }
+
+        /* Checkout Container Card */
+        .checkout-container-card {
+            background: linear-gradient(180deg, rgba(13, 20, 35, 0.5) 0%, rgba(8, 12, 24, 0.7) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .input-group-premium label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .form-input-premium {
+            height: 48px;
+            background: rgba(5, 8, 17, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            font-size: 13px;
+            color: #ffffff;
+            padding: 0 16px 0 44px;
+            transition: all 0.25s ease;
+        }
+        
+        .form-input-premium:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 12px rgba(255, 94, 0, 0.15);
+            background: rgba(5, 8, 17, 0.6) !important;
+        }
+
+        .input-wrapper i {
+            left: 16px;
+            font-size: 16px;
+            color: var(--color-text-muted);
+        }
+
+        /* Stats & Social Proof */
+        .stats-grid-row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .recent-buyers-section {
+            background: rgba(13, 20, 35, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        /* ------------------------------------------------------------- */
+        /* PREMIUM VIRTUAL MEMBERSHIP PASS (Wallet-Style)                */
+        /* ------------------------------------------------------------- */
+        .profile-membership-pass {
+            position: relative;
+            background: linear-gradient(135deg, rgba(24, 32, 54, 0.85) 0%, rgba(8, 12, 24, 0.98) 100%);
+            border: 1.5px solid rgba(255, 94, 0, 0.25);
+            border-radius: 24px;
+            padding: 24px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto 24px auto;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                0 0 35px rgba(255, 94, 0, 0.08);
+            overflow: hidden;
+            text-align: left;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Glowing Holographic Effect */
+        .profile-membership-pass::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 300%; height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.02) 30%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(255, 255, 255, 0.02) 70%,
+                transparent
+            );
+            transform: skewX(-20deg);
+            pointer-events: none;
+            z-index: 2;
+            animation: pass-shimmer 8s infinite ease-in-out;
+        }
+
+        @keyframes pass-shimmer {
+            0% { left: -150%; }
+            50% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        .pass-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .pass-avatar-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pass-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 94, 0, 0.25), rgba(255, 94, 0, 0.05));
+            border: 1.5px solid rgba(255, 94, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+            font-size: 22px;
+            box-shadow: 0 0 12px rgba(255, 94, 0, 0.2);
+            position: relative;
+        }
+
+        .pass-status-badge {
+            position: absolute;
+            bottom: -3px; right: -3px;
+            background: var(--color-primary);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 7.5px;
+            font-weight: 800;
+            padding: 2px 4px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            animation: badge-pulse 2s infinite ease-in-out;
+        }
+
+        .pass-user-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .pass-user-status {
+            font-size: 9px;
+            color: #FFD700;
+        }
+
+        /* Metallic gold chip */
+        .pass-chip {
+            width: 32px;
+            height: 24px;
+            background: linear-gradient(135deg, #ffd700 0%, #b38600 50%, #ffd700 100%);
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.9;
+        }
+
+        /* Monospace ID Pass Layout */
+        .pass-info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .pass-info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .pass-info-item label {
+            font-size: 8px;
+            letter-spacing: 0.06em;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .pass-info-item span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #ffffff;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Horizontal barcode container */
+        .pass-barcode {
+            display: flex;
+            height: 30px;
+            gap: 1.5px;
+            opacity: 0.6;
+            margin-top: 16px;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .barcode-line {
+            width: 1px;
+            height: 100%;
+            background: #ffffff;
+        }
+        .barcode-line.thin { width: 0.75px; }
+        .barcode-line.thick { width: 2.2px; }
+        .barcode-line.wide { width: 3.5px; }
+
+        .pass-stats-row {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(5, 8, 17, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 12px;
+            margin-top: 16px;
+            margin-bottom: 0;
+        }
+
+        .pass-stat-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .pass-stat-item label {
+            font-size: 8px;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .pass-stat-val {
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .pass-stat-val.status-active {
+            font-size: 10.5px;
+            color: var(--color-success);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 700;
+        }
+
+        /* Pass buttons and actions */
+        .pass-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-direction: row !important; /* side-by-side buttons */
+        }
+
+        .btn-pass-action {
+            flex: 1;
+            height: 42px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-pass-shop {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #ff7e36 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 12px rgba(255, 94, 0, 0.2);
+        }
+
+        .btn-pass-logout {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--color-text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .btn-pass-logout:active {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Custom Tickets in history list */
+        .license-ticket-item {
+            background: linear-gradient(180deg, rgba(13, 20, 35, 0.4) 0%, rgba(8, 12, 24, 0.6) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .ticket-header {
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .ticket-ref-id {
+            font-size: 10px;
+            padding: 2px 6px;
+            background: rgba(255, 94, 0, 0.1);
+            border: 1px solid rgba(255, 94, 0, 0.2);
+            color: var(--color-primary);
+            border-radius: 6px;
+        }
+
+        .credential-card {
+            background: rgba(5, 8, 17, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .credential-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .credential-field-label {
+            font-size: 9px;
+        }
+
+        .credential-value {
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .btn-credential-copy {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+        }
+
+        /* Admin views on mobile */
+        .admin-sidebar {
+            display: none !important; /* Hide Sidebar on mobile admin, we have topbar actions for simple tasks */
+        }
+        
+        .admin-main {
+            padding: 12px 0;
+            margin-left: 0 !important;
+            width: 100% !important;
+        }
+        
+        .admin-container {
+            display: block !important;
+            padding: 12px;
+        }
+        
+        .admin-topbar {
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 12px 16px !important;
+            background: rgba(13, 20, 35, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            border-radius: 16px !important;
+            margin-bottom: 16px !important;
+        }
+        
+        .admin-page-title {
+            font-size: 15px !important;
+            text-align: left !important;
+            margin: 0 !important;
+            font-weight: 700 !important;
+        }
+        
+        .topbar-actions {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        /* Hide redundant buttons and badges on mobile topbar */
+        .admin-topbar .pill-success,
+        .admin-topbar .btn-topbar-primary {
+            display: none !important;
+        }
+        
+        .admin-topbar .btn-back-shop {
+            padding: 6px 12px !important;
+            font-size: 11px !important;
+            height: 32px !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+            border-radius: 10px !important;
+        }
+        
+        .admin-topbar .btn-back-shop i {
+            font-size: 12px !important;
+        }
+        
+        .admin-card {
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .dashboard-row-2 {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        
+        .admin-table th, .admin-table td {
+            padding: 8px;
+            font-size: 10.5px;
+        }
+        
+        .table-filter-bar {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+        
+        .layout-split {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        /* Mobile Admin Navigation Scrollable Tab Bar */
+        .admin-mobile-tabs-bar {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-mobile-tabs-bar {
+                display: flex;
+                overflow-x: auto;
+                gap: 8px;
+                padding: 10px 4px;
+                margin-bottom: 16px;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+            .admin-mobile-tabs-bar::-webkit-scrollbar {
+                display: none; /* Hide scrollbar for a clean native-app look */
+            }
+            .admin-mob-tab {
+                flex-shrink: 0;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                color: var(--color-text-muted);
+                padding: 8px 16px;
+                border-radius: 12px;
+                font-family: var(--font-mono);
+                font-size: 11px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            .admin-mob-tab.active {
+                background: linear-gradient(135deg, var(--color-primary) 0%, #ff7e36 100%);
+                color: #ffffff;
+                border: none;
+                box-shadow: 0 4px 12px rgba(255, 94, 0, 0.25);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1 — Public Landing Page                                      -->
+    <!-- ================================================================= -->
+    <div id="view-landing" class="app-view active">
+        <div class="landing-container">
+            <!-- Navbar -->
+            <nav class="landing-nav">
+                <a href="#" class="landing-logo" onclick="event.preventDefault(); resetToLandingPage()">BrannMotion<span class="logo-dot">.</span><span class="online-indicator-dot" title="Sistem Online"></span></a>
+                <div class="nav-right-container">
+                </div>
+            </nav>
+
+            <!-- Main Grid Layout -->
+            <div class="landing-grid">
+                <!-- Left Column (Product Info & Features) -->
+                <div class="landing-info-col">
+                    <!-- Hero Section -->
+                    <header class="hero-section">
+                        <span class="hero-eyebrow"><i class="ti ti-discount-2-check"></i> Premium License</span>
+                        <h1 class="hero-title">Alight Motion Premium</h1>
+                        <div class="hero-price-tag">
+                            <span class="price-currency">Rp</span>
+                            <span class="price-value">3.000</span>
+                            <span class="price-duration">/ 1 Tahun</span>
+                        </div>
+                        <p style="font-size: 12px; color: var(--color-text-muted); font-style: italic; margin-top: -6px;">*Belum termasuk biaya admin pembayaran</p>
+                    </header>
+
+                    <!-- Features Grid -->
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-video-off"></i></div>
+                            <h4 class="feature-card-title">Tanpa Watermark</h4>
+                            <p class="feature-card-desc">Ekspor hasil edit video Anda bersih dan jernih tanpa tanda air bawaan.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-bolt"></i></div>
+                            <h4 class="feature-card-title">Semua Efek Terbuka</h4>
+                            <p class="feature-card-desc">Gunakan seluruh aset, transisi, preset, dan efek pro tanpa terkecuali.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-calendar-event"></i></div>
+                            <h4 class="feature-card-title">Aktif 1 Tahun Penuh</h4>
+                            <p class="feature-card-desc">Akses lisensi premium dijamin aktif selama 365 hari penuh tanpa masalah.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-mail"></i></div>
+                            <h4 class="feature-card-title">Email dari Admin</h4>
+                            <p class="feature-card-desc">Akun disediakan langsung oleh admin, Anda tinggal login dan langsung edit.</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Communities Links -->
+                    <div class="social-community-links">
+                        <a href="https://whatsapp.com/channel/0029Vb8NgLP3wtb5C7OHqX19" target="_blank" rel="noopener" class="social-badge social-badge-wa">
+                            <i class="ti ti-brand-whatsapp"></i> Saluran WA
+                        </a>
+                        <a href="https://discord.gg/94Kp7SuBXk" target="_blank" rel="noopener" class="social-badge social-badge-dc">
+                            <i class="ti ti-brand-discord"></i> Discord
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Checkout & Lookup Card + Stats) -->
+                <div class="landing-checkout-col">
+                    <div class="checkout-container-card">
+                        <!-- Beli Akun Form -->
+                        <div id="card-tab-beli" class="card-tab-pane active" style="padding: 0;">
+                            <form id="landing-checkout-form" class="checkout-form" onsubmit="handleCheckout(event)">
+                                <div class="input-group-premium">
+                                    <label>Email Penerima *</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" id="customer-email" class="form-input-premium" placeholder="Masukkan email kamu" required>
+                                        <i class="ti ti-mail"></i>
+                                    </div>
+                                </div>
+                                <div class="input-group-premium">
+                                    <label>Nomor WhatsApp *</label>
+                                    <div class="input-wrapper">
+                                        <input type="tel" id="customer-phone" class="form-input-premium" placeholder="08xxxxxxxx" required>
+                                        <i class="ti ti-brand-whatsapp"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 24px;">
+                                    <label class="form-label-mono" for="purchase-qty" style="font-size: 10px; color: var(--color-text-muted); letter-spacing: 0.05em; font-weight: 700; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <span>Jumlah Akun (Bulk)</span>
+                                        <span id="purchase-stock-status" class="stock-badge-inline" style="font-family: var(--font-mono); font-size: 9px; color: var(--color-success); border: 1px solid rgba(46, 213, 115, 0.2); background: rgba(46, 213, 115, 0.05); padding: 2px 6px; border-radius: 6px;">Stok: -</span>
+                                    </label>
+                                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+                                        <div class="qty-selector">
+                                            <button type="button" class="qty-btn" onclick="adjustQty(-1)">-</button>
+                                            <input type="number" id="purchase-qty" class="qty-input" value="1" min="1" max="10" aria-label="Jumlah Akun (Bulk)" readonly>
+                                            <button type="button" class="qty-btn" onclick="adjustQty(1)">+</button>
+                                        </div>
+                                        <div class="bulk-price-box">
+                                            <span class="bulk-price-lbl">Total Bayar</span>
+                                            <span id="bulk-price-preview" class="bulk-price-val">Rp 3.000</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Info Box -->
+                                <div class="notification-box-premium">
+                                    <i class="ti ti-bolt"></i>
+                                    <div class="notification-text" style="font-size: 12px; color: var(--color-text-dark); line-height: 1.4;">
+                                        <strong>Pengiriman Instan:</strong> Kredensial akun dikirim otomatis ke email Anda dalam 1-5 menit setelah pembayaran selesai diverifikasi.
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn-cta" style="height: 50px;">
+                                    Beli Sekarang <i class="ti ti-arrow-right"></i>
+                                </button>
+                            </form>
+
+                            <!-- Security Badge -->
+                            <div class="security-badge" style="margin-top: 18px; margin-bottom: 0; font-size: 12px; justify-content: center;">
+                                <i class="ti ti-shield-lock"></i>
+                                <span>Pembayaran Aman & Verifikasi Mutasi Instan</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Statistics & Social Proof Row -->
+                    <div class="stats-grid-row">
+                        <!-- 10 Pembelian Terakhir -->
+                        <div class="recent-buyers-section">
+                            <div class="recent-buyers-title">
+                                <span></span> 10 Pembelian Terakhir
+                            </div>
+                            <div id="recent-buyers-list" style="display: flex; flex-direction: column; gap: 4px;">
+                                <!-- Loaded via API -->
+                                <div class="buyer-row"><span class="buyer-email">Memuat data...</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Top Buyers Section -->
+                        <div class="recent-buyers-section">
+                            <div class="recent-buyers-title" style="color: #FFD700;">
+                                <i class="ti ti-crown" style="font-size: 12px; color: #FFD700;"></i> Papan Peringkat
+                            </div>
+                            <div id="top-buyers-list" style="display: flex; flex-direction: column; gap: 4px;">
+                                <!-- Loaded via API -->
+                                <div class="buyer-row"><span class="buyer-email">Memuat data...</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer & Admin Toggle Link -->
+            <footer class="landing-footer">
+                <span>BrannMotion &middot; Transaksi terenkripsi &middot; Dukungan 24/7</span>
+                <button type="button" class="admin-link" onclick="openAdminAuthModal()">Admin</button>
+            </footer>
+        </div>
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- SUCCESS DELIVERY SCREEN                                           -->
+    <!-- ================================================================= -->
+    <div id="view-success-delivery" class="success-view-container">
+        <div class="success-ring">
+            <i class="ti ti-circle-check"></i>
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: 26px; margin-bottom: 8px;">Pembayaran Berhasil!</h2>
+        <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 24px; padding: 0 10px;">Pesanan Anda selesai diproses. Silakan simpan kredensial akun Alight Motion Premium berikut:</p>
+
+        <!-- Credentials container for bulk deliveries -->
+        <div id="delivery-accounts-wrapper">
+            <!-- Dynamically generated in JS -->
+        </div>
+
+        <!-- Global Note Box -->
+        <div class="notification-box" style="text-align: left; background-color: rgba(255, 87, 1, 0.04); border-color: rgba(255, 87, 1, 0.2); margin-bottom: 32px;">
+            <i class="ti ti-alert-circle"></i>
+            <div class="notification-text">
+                <strong>Catatan Khusus:</strong> <span id="delivery-note">Catatan global lisensi premium.</span>
+            </div>
+        </div>
+
+        <!-- Login Steps Preview -->
+        <div class="success-steps-box">
+            <h3 class="success-steps-title">Tata Cara Login Akun</h3>
+            <div id="delivery-steps-list">
+                <!-- Dynamically Rendered Steps -->
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px;">
+            <button class="btn-cta" id="btn-download-txt" onclick="downloadAccountsTxt()" style="background-color: #10B981; border: none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);">
+                <i class="ti ti-download" style="background: none; width: auto; height: auto;"></i> Download Akun (.txt)
+            </button>
+            <button class="btn-cta" onclick="resetToLandingPage()" style="margin-top: 0; background-color: var(--color-primary);">
+                <i class="ti ti-arrow-left" style="background: none; width: auto; height: auto;"></i> Kembali ke Toko
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2 — Admin Dashboard                                          -->
+    <!-- ================================================================= -->
+    <div id="view-admin" class="app-view">
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <div class="sidebar-brand">
+                    <div class="sidebar-brand-title">BrannMotion<span>.</span></div>
+                    <span class="sidebar-brand-sub">Admin Panel v1.0</span>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('dashboard', this)" class="sidebar-link active">
+                            <i class="ti ti-layout-dashboard"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('tambah-akun', this)" class="sidebar-link">
+                            <i class="ti ti-plus"></i> Tambah Akun
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('daftar-akun', this)" class="sidebar-link">
+                            <i class="ti ti-list"></i> Daftar Akun
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('riwayat-pembelian', this)" class="sidebar-link">
+                            <i class="ti ti-history"></i> Riwayat Pembelian
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('catatan-global', this)" class="sidebar-link">
+                            <i class="ti ti-note"></i> Catatan Global
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('tata-cara', this)" class="sidebar-link">
+                            <i class="ti ti-arrow-loop-right"></i> Tata Cara Login
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('users', this)" class="sidebar-link">
+                            <i class="ti ti-users"></i> Daftar User
+                        </a>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div>User Logged:</div>
+                    <div style="color: #ffffff; font-weight: 500; margin-top: 2px;">BrannMotion Admin</div>
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <main class="admin-main">
+                <!-- Mobile Admin Navigation Bar (Scrollable Tabs) -->
+                <div class="admin-mobile-tabs-bar">
+                    <button onclick="switchAdminSubpage('dashboard')" class="admin-mob-tab active" id="mob-tab-dashboard">Dashboard</button>
+                    <button onclick="switchAdminSubpage('tambah-akun')" class="admin-mob-tab" id="mob-tab-tambah-akun">Tambah Akun</button>
+                    <button onclick="switchAdminSubpage('daftar-akun')" class="admin-mob-tab" id="mob-tab-daftar-akun">Daftar Akun</button>
+                    <button onclick="switchAdminSubpage('riwayat-pembelian')" class="admin-mob-tab" id="mob-tab-riwayat-pembelian">Riwayat</button>
+                    <button onclick="switchAdminSubpage('catatan-global')" class="admin-mob-tab" id="mob-tab-catatan-global">Catatan</button>
+                    <button onclick="switchAdminSubpage('tata-cara')" class="admin-mob-tab" id="mob-tab-tata-cara">Tata Cara</button>
+                    <button onclick="switchAdminSubpage('users')" class="admin-mob-tab" id="mob-tab-users">User</button>
+                </div>
+
+                <!-- Topbar -->
+                <header class="admin-topbar">
+                    <h2 class="admin-page-title" id="admin-header-title">Dashboard Overview</h2>
+                    <div class="topbar-actions">
+                        <span class="pill-badge pill-success"><i class="ti ti-circle-filled"></i> STATUS: ONLINE</span>
+                        <button class="btn-topbar-primary" onclick="switchAdminSubpage('tambah-akun')">
+                            <i class="ti ti-plus"></i> Tambah Akun
+                        </button>
+                        <button class="btn-back-shop" onclick="switchView('landing')">
+                            <i class="ti ti-arrow-back-up"></i> Kembali ke Toko
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Sub-page Content Box -->
+                <div class="admin-content-area">
+                    
+                    <!-- SUB-PAGE 1: Dashboard -->
+                    <div id="subpage-dashboard" class="admin-subpage active">
+                        <div class="dashboard-grid">
+                            <div class="admin-card">
+                                <div class="stat-card-title">Total Akun</div>
+                                <div class="stat-card-value" id="stat-total" style="color: #ffffff">0</div>
+                            </div>
+                            <div class="admin-card">
+                                <div class="stat-card-title">Tersedia</div>
+                                <div class="stat-card-value" id="stat-tersedia" style="color: var(--color-success)">0</div>
+                            </div>
+                            <div class="admin-card">
+                                <div class="stat-card-title">Terpakai</div>
+                                <div class="stat-card-value" id="stat-terpakai" style="color: var(--color-primary)">0</div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-row-2">
+                            <!-- Recent Accounts Table Card -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-clock"></i> Akun Terbaru</h3>
+                                <div class="table-responsive">
+                                    <table class="admin-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Gmail</th>
+                                                <th>Link Akses</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dashboard-recent-table">
+                                            <!-- Dynamically loaded -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Note Preview Card -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-file-text"></i> Catatan Aktif</h3>
+                                <div class="global-note-preview">
+                                    <span class="global-note-badge">GLOBAL</span>
+                                    <p class="global-note-content-text" id="dashboard-note-text">Memuat...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 2: Tambah Akun -->
+                    <div id="subpage-tambah-akun" class="admin-subpage">
+                        <div class="admin-card" style="max-width: 800px;">
+                            <div class="tabs-header">
+                                <button class="tab-btn active" onclick="switchTab('tab-manual', this)">Input Manual</button>
+                                <button class="tab-btn" onclick="switchTab('tab-import', this)">Import File</button>
+                            </div>
+
+                            <!-- Pane 1: Manual -->
+                            <div id="tab-manual" class="tab-pane active">
+                                <form id="form-add-manual" onsubmit="submitManualAccount(event)">
+                                    <div class="form-group">
+                                        <label class="form-label-mono">Gmail Akun</label>
+                                        <input type="email" id="manual-gmail" class="form-input" placeholder="pembeli@gmail.com" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label-mono">Link Akses / Link Aktivasi</label>
+                                        <input type="url" id="manual-link" class="form-input" placeholder="https://alight.link/xxxxx" required>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 24px;">
+                                        <label class="form-label-mono">Catatan Khusus (Opsional)</label>
+                                        <textarea id="manual-note" class="form-textarea" placeholder="Tambahkan catatan khusus..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-submit-action">
+                                        <i class="ti ti-device-floppy"></i> Simpan Akun
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Pane 2: Import -->
+                            <div id="tab-import" class="tab-pane">
+                                <div class="mono-code-block">
+Format File CSV/TXT:
+gmail,link_akses
+contoh1@gmail.com,https://alight.link/a
+contoh2@gmail.com,https://alight.link/b
+                                </div>
+                                <div class="upload-dashed-box">
+                                    <i class="ti ti-cloud-upload"></i>
+                                    <span>Klik atau Seret file CSV/TXT ke area ini</span>
+                                    <span class="upload-note">Hanya file berekstensi .csv atau .txt</span>
+                                    <input type="file" id="import-file-input" class="upload-hidden-input" accept=".csv,.txt" onchange="handleFileImport(event)">
+                                </div>
+
+                                <!-- Parsed Output Preview -->
+                                <div id="import-preview-box" class="preview-import-container" style="display: none;">
+                                    <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+                                        <span>Preview Data Impor (<span id="import-count">0</span> baris)</span>
+                                        <button class="btn-submit-action" style="padding: 6px 12px; font-size: 12px;" onclick="confirmBulkImport()">Konfirmasi Impor</button>
+                                    </h4>
+                                    <div class="table-responsive">
+                                        <table class="admin-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Gmail</th>
+                                                    <th>Link Akses</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="import-preview-table">
+                                                <!-- Dynamic preview -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 3: Daftar Akun -->
+                    <div id="subpage-daftar-akun" class="admin-subpage">
+                        <div class="admin-card">
+                            <div class="table-filter-bar">
+                                <div class="search-input-wrapper">
+                                    <i class="ti ti-search"></i>
+                                    <input type="text" id="search-accounts" class="search-input" placeholder="Cari email..." oninput="renderDaftarAkunTable()">
+                                </div>
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <select id="filter-status" class="filter-select" onchange="renderDaftarAkunTable()">
+                                        <option value="all">Semua Status</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Terpakai">Terpakai</option>
+                                        <option value="Pending">Pending</option>
+                                    </select>
+                                    <button class="btn-back-shop" onclick="exportCSV()" style="padding: 9px 14px; font-size: 12px;">
+                                        <i class="ti ti-file-export"></i> Ekspor CSV
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Gmail</th>
+                                            <th>Link Akses</th>
+                                            <th>Status</th>
+                                            <th style="width: 140px; text-align: center;">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="daftar-akun-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 4: Catatan Global -->
+                    <div id="subpage-catatan-global" class="admin-subpage">
+                        <div class="layout-split">
+                            <!-- Editor -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-edit"></i> Edit Catatan Global</h3>
+                                <form id="form-global-note" onsubmit="submitGlobalNote(event)">
+                                    <div class="form-group" style="margin-bottom: 20px;">
+                                        <label class="form-label-mono">Isi Catatan</label>
+                                        <textarea id="global-note-textarea" class="form-textarea" style="height: 180px;" required placeholder="Ketik ketentuan pemakaian akun..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-submit-action">
+                                        <i class="ti ti-device-floppy"></i> Simpan Catatan
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Live preview -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-eye"></i> Preview Catatan Customer</h3>
+                                <div class="notification-box" style="text-align: left; background-color: rgba(255, 87, 1, 0.04); border-color: rgba(255, 87, 1, 0.2); margin-top: 12px;">
+                                    <i class="ti ti-alert-circle"></i>
+                                    <div class="notification-text">
+                                        <strong>Catatan Khusus:</strong> <span id="note-preview-display">Memuat preview...</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="receipt-mock-container" style="margin-top: 24px;">
+                                    <div class="receipt-mock-title">Mockup Pengiriman Kredensial</div>
+                                    <div class="credential-item">
+                                        <div class="credential-label">Gmail Akun</div>
+                                        <div class="credential-value-wrapper">
+                                            <span class="credential-val-text">contoh@gmail.com</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 5: Tata Cara Login -->
+                    <div id="subpage-tata-cara" class="admin-subpage">
+                        <div class="layout-split">
+                            <!-- Editor -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-list-details"></i> Kelola Tata Cara Login</h3>
+                                <div id="step-rows-container">
+                                    <!-- Dynamic step editor items -->
+                                </div>
+                                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                                    <button class="btn-back-shop" onclick="addNewStepField()">
+                                        <i class="ti ti-plus"></i> Tambah Langkah
+                                    </button>
+                                    <button class="btn-submit-action" onclick="saveLoginSteps()">
+                                        <i class="ti ti-device-floppy"></i> Simpan Langkah
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Live phone layout mockup -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-device-mobile"></i> Live Preview Customer</h3>
+                                <div class="receipt-mock-container">
+                                    <div class="receipt-mock-title">Tata Cara Login Akun</div>
+                                    <div id="steps-preview-display">
+                                        <!-- Live step updates preview -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 6: Riwayat Pembelian -->
+                    <div id="subpage-riwayat-pembelian" class="admin-subpage">
+                        <div class="admin-card">
+                            <div class="table-filter-bar">
+                                <div class="search-input-wrapper">
+                                    <i class="ti ti-search"></i>
+                                    <input type="text" id="search-purchases" class="search-input" placeholder="Cari email atau Ref ID..." oninput="renderRiwayatPembelianTable()">
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ref ID</th>
+                                            <th>Email Pembeli</th>
+                                            <th>Jumlah</th>
+                                            <th>Total Bayar</th>
+                                            <th>Akun yang Terbeli</th>
+                                            <th>Tanggal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="riwayat-pembelian-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 7: Daftar User -->
+                    <div id="subpage-users" class="admin-subpage">
+                        <div class="admin-card">
+                            <div class="table-filter-bar">
+                                <div class="search-input-wrapper">
+                                    <i class="ti ti-search"></i>
+                                    <input type="text" id="search-users" class="search-input" placeholder="Cari email user..." oninput="renderAdminUsersTable()">
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Email User</th>
+                                            <th>WhatsApp</th>
+                                            <th>Total Transaksi</th>
+                                            <th>Total Akun</th>
+                                            <th>Tanggal Bergabung</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="users-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- ================================================================= -->
+    <!-- AUTHENTICATION GATE MODAL (ADMIN ACCESS)                          -->
+    <!-- ================================================================= -->
+    <div id="modal-admin-auth" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal('modal-admin-auth')"><i class="ti ti-x"></i></button>
+            <div class="modal-header-icon" style="background-color: var(--color-primary-light); color: var(--color-primary);">
+                <i class="ti ti-lock"></i>
+            </div>
+            <h3 class="modal-title">Admin Access Gate</h3>
+            <p class="modal-subtitle">Masuk ke dashboard pengelolaan BrannMotion.</p>
+            <form id="admin-auth-form" onsubmit="handleAdminAuth(event)">
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label-mono">Username Admin</label>
+                    <input type="text" id="admin-username" class="form-input" placeholder="Username" autocomplete="username" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label-mono">Password Admin</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="modal-action-btn btn-modal-dark">
+                    Masuk ke Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- PAYMENT MODAL (QRIS CODE DISPLAY)                                 -->
+    <!-- ================================================================= -->
+    <div id="modal-payment" class="modal-overlay">
+        <div class="modal-card" style="max-width: 440px; border-top: 3px solid var(--color-primary); padding: 28px 24px;">
+            <button class="modal-close" onclick="cancelPayment()"><i class="ti ti-x"></i></button>
+            <div class="modal-header-icon" style="background-color: var(--color-primary-light); color: var(--color-primary); width: 44px; height: 44px; font-size: 20px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                <i class="ti ti-qrcode"></i>
+            </div>
+            <h3 class="modal-title" style="font-size: 18px; font-weight: 700; font-family: var(--font-display);">Pembayaran QRIS</h3>
+            <p class="modal-subtitle" style="font-size: 12px; margin-bottom: 20px;">Pindai kode QRIS di bawah menggunakan GoPay, OVO, Dana, LinkAja, ShopeePay, atau Mobile Banking Anda.</p>
+
+            <!-- QRIS Code Image Wrapper -->
+            <div style="background: #ffffff; padding: 12px; border-radius: var(--radius-md); box-shadow: 0 4px 24px rgba(0,0,0,0.3); width: 220px; margin: 0 auto 16px auto; display: flex; align-items: center; justify-content: center;">
+                <img id="qris-image-render" src="" alt="QRIS Code" style="width: 100%; height: auto; display: block; border-radius: 4px;">
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="qris-countdown" style="font-size: 13px; color: var(--color-danger); font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; justify-content: center;">
+                <i class="ti ti-clock"></i> Batas Waktu Bayar: <span id="qris-timer">30:00</span>
+            </div>
+
+            <!-- Details Box -->
+            <div class="payment-info-box" style="background: rgba(6, 9, 17, 0.45); border: var(--color-border-hairline); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 20px;">
+                <div class="payment-info-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="payment-info-label" style="font-size: 12px; color: var(--color-text-muted);">Total Harga</span>
+                    <span class="payment-info-val amount-highlight" id="pay-amount" style="font-size: 16px; font-weight: 800; color: var(--color-primary);">Rp 3.000</span>
+                </div>
+                <div class="payment-info-row" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="payment-info-label" style="font-size: 12px; color: var(--color-text-muted);">Ref ID Transaksi</span>
+                    <span class="payment-info-val" id="pay-ref" style="font-size: 12px; color: #ffffff; font-weight: 700; font-family: var(--font-mono);">QRIS12345678</span>
+                </div>
+            </div>
+
+            <button type="button" class="modal-action-btn btn-modal-cancel" onclick="cancelPayment()" style="padding: 10px 14px; font-size: 13px; font-weight: 700;">
+                Batalkan Transaksi
+            </button>
+
+            <!-- Spinner / Status Polling -->
+            <div class="qris-status-box" style="border-top: 1px dashed rgba(255,255,255,0.06); padding-top: 14px; margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px; color: var(--color-text-muted);">
+                <span class="qris-spinner" style="width: 14px; height: 14px; border: 2px solid rgba(255, 94, 0, 0.2); border-top-color: var(--color-primary); border-radius: 50%; animation: spin 1s infinite linear;"></span>
+                <span>Menunggu mutasi mutasi gateway diverifikasi...</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Floating WhatsApp Button (Hubungi Owner) -->
+    <a href="https://wa.me/6289621484600" target="_blank" rel="noopener" class="floating-wa-btn" id="owner-wa-button" title="Hubungi Owner">
+        <i class="ti ti-brand-whatsapp"></i>
+        <span>Hubungi Owner</span>
+    </a>
+
+    <!-- ================================================================= -->
+    <!-- TOAST NOTIFICATION CONTAINER                                      -->
+    <!-- ================================================================= -->
+    <div id="toast-root" class="toast-stack"></div>
+
+
+    <!-- ================================================================= -->
+    <!-- FRONTEND APP LOGIC                                               -->
+    <!-- ================================================================= -->
+    <script src="/js/app.js" defer></script>
+</body>
+</html>
