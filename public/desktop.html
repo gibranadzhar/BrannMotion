@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrannMotion — Alight Motion Premium</title>
+    <!-- Fonts: Playfair Display, JetBrains Mono, Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1 — Public Landing Page                                      -->
+    <!-- ================================================================= -->
+    <div id="view-landing" class="app-view active">
+        <div class="landing-container">
+            <!-- Navbar -->
+            <nav class="landing-nav">
+                <a href="#" class="landing-logo" onclick="event.preventDefault(); resetToLandingPage()">BrannMotion<span class="logo-dot">.</span><span class="online-indicator-dot" title="Sistem Online"></span></a>
+                <div class="nav-right-container">
+                </div>
+            </nav>
+
+            <!-- Main Grid Layout -->
+            <div class="landing-grid">
+                <!-- Left Column (Product Info & Features) -->
+                <div class="landing-info-col">
+                    <!-- Hero Section -->
+                    <header class="hero-section">
+                        <span class="hero-eyebrow"><i class="ti ti-discount-2-check"></i> Premium License</span>
+                        <h1 class="hero-title">Alight Motion Premium</h1>
+                        <div class="hero-price-tag">
+                            <span class="price-currency">Rp</span>
+                            <span class="price-value">3.000</span>
+                            <span class="price-duration">/ 1 Tahun</span>
+                        </div>
+                        <p style="font-size: 12px; color: var(--color-text-muted); font-style: italic; margin-top: -6px;">*Belum termasuk biaya admin pembayaran</p>
+                    </header>
+
+                    <!-- Features Grid -->
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-video-off"></i></div>
+                            <h4 class="feature-card-title">Tanpa Watermark</h4>
+                            <p class="feature-card-desc">Ekspor hasil edit video Anda bersih dan jernih tanpa tanda air bawaan.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-bolt"></i></div>
+                            <h4 class="feature-card-title">Semua Efek Terbuka</h4>
+                            <p class="feature-card-desc">Gunakan seluruh aset, transisi, preset, dan efek pro tanpa terkecuali.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-calendar-event"></i></div>
+                            <h4 class="feature-card-title">Aktif 1 Tahun Penuh</h4>
+                            <p class="feature-card-desc">Akses lisensi premium dijamin aktif selama 365 hari penuh tanpa masalah.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><i class="ti ti-mail"></i></div>
+                            <h4 class="feature-card-title">Email dari Admin</h4>
+                            <p class="feature-card-desc">Akun disediakan langsung oleh admin, Anda tinggal login dan langsung edit.</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Communities Links -->
+                    <div class="social-community-links">
+                        <a href="https://whatsapp.com/channel/0029Vb8NgLP3wtb5C7OHqX19" target="_blank" rel="noopener" class="social-badge social-badge-wa">
+                            <i class="ti ti-brand-whatsapp"></i> Saluran WA
+                        </a>
+                        <a href="https://discord.gg/94Kp7SuBXk" target="_blank" rel="noopener" class="social-badge social-badge-dc">
+                            <i class="ti ti-brand-discord"></i> Discord
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Checkout & Lookup Card + Stats) -->
+                <div class="landing-checkout-col">
+                    <div class="checkout-container-card">
+                        <!-- Beli Akun Form -->
+                        <div id="card-tab-beli" class="card-tab-pane active" style="padding: 0;">
+                            <form id="landing-checkout-form" class="checkout-form" onsubmit="handleCheckout(event)">
+                                <div class="input-group-premium">
+                                    <label>Email Penerima *</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" id="customer-email" class="form-input-premium" placeholder="Masukkan email kamu" required>
+                                        <i class="ti ti-mail"></i>
+                                    </div>
+                                </div>
+                                <div class="input-group-premium">
+                                    <label>Nomor WhatsApp *</label>
+                                    <div class="input-wrapper">
+                                        <input type="tel" id="customer-phone" class="form-input-premium" placeholder="08xxxxxxxx" required>
+                                        <i class="ti ti-brand-whatsapp"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 24px;">
+                                    <label class="form-label-mono" for="purchase-qty" style="font-size: 10px; color: var(--color-text-muted); letter-spacing: 0.05em; font-weight: 700; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <span>Jumlah Akun (Bulk)</span>
+                                        <span id="purchase-stock-status" class="stock-badge-inline" style="font-family: var(--font-mono); font-size: 9px; color: var(--color-success); border: 1px solid rgba(46, 213, 115, 0.2); background: rgba(46, 213, 115, 0.05); padding: 2px 6px; border-radius: 6px;">Stok: -</span>
+                                    </label>
+                                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+                                        <div class="qty-selector">
+                                            <button type="button" class="qty-btn" onclick="adjustQty(-1)">-</button>
+                                            <input type="number" id="purchase-qty" class="qty-input" value="1" min="1" max="10" aria-label="Jumlah Akun (Bulk)" readonly>
+                                            <button type="button" class="qty-btn" onclick="adjustQty(1)">+</button>
+                                        </div>
+                                        <div class="bulk-price-box">
+                                            <span class="bulk-price-lbl">Total Bayar</span>
+                                            <span id="bulk-price-preview" class="bulk-price-val">Rp 3.000</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Info Box -->
+                                <div class="notification-box-premium">
+                                    <i class="ti ti-bolt"></i>
+                                    <div class="notification-text" style="font-size: 12px; color: var(--color-text-dark); line-height: 1.4;">
+                                        <strong>Pengiriman Instan:</strong> Kredensial akun dikirim otomatis ke email Anda dalam 1-5 menit setelah pembayaran selesai diverifikasi.
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn-cta" style="height: 50px;">
+                                    Beli Sekarang <i class="ti ti-arrow-right"></i>
+                                </button>
+                            </form>
+
+                            <!-- Security Badge -->
+                            <div class="security-badge" style="margin-top: 18px; margin-bottom: 0; font-size: 12px; justify-content: center;">
+                                <i class="ti ti-shield-lock"></i>
+                                <span>Pembayaran Aman & Verifikasi Mutasi Instan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics & Social Proof Row -->
+                    <div class="stats-grid-row">
+                        <!-- 10 Pembelian Terakhir -->
+                        <div class="recent-buyers-section">
+                            <div class="recent-buyers-title">
+                                <span></span> 10 Pembelian Terakhir
+                            </div>
+                            <div id="recent-buyers-list" style="display: flex; flex-direction: column; gap: 4px;">
+                                <!-- Loaded via API -->
+                                <div class="buyer-row"><span class="buyer-email">Memuat data...</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Top Buyers Section -->
+                        <div class="recent-buyers-section">
+                            <div class="recent-buyers-title" style="color: #FFD700;">
+                                <i class="ti ti-crown" style="font-size: 12px; color: #FFD700;"></i> Papan Peringkat
+                            </div>
+                            <div id="top-buyers-list" style="display: flex; flex-direction: column; gap: 4px;">
+                                <!-- Loaded via API -->
+                                <div class="buyer-row"><span class="buyer-email">Memuat data...</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer & Admin Toggle Link -->
+            <footer class="landing-footer">
+                <span>BrannMotion &middot; Transaksi terenkripsi &middot; Dukungan 24/7</span>
+                <button type="button" class="admin-link" onclick="openAdminAuthModal()">Admin</button>
+            </footer>
+        </div>
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- SUCCESS DELIVERY SCREEN                                           -->
+    <!-- ================================================================= -->
+    <div id="view-success-delivery" class="success-view-container">
+        <div class="success-ring">
+            <i class="ti ti-circle-check"></i>
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: 26px; margin-bottom: 8px;">Pembayaran Berhasil!</h2>
+        <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 24px; padding: 0 10px;">Pesanan Anda selesai diproses. Silakan simpan kredensial akun Alight Motion Premium berikut:</p>
+
+        <!-- Credentials container for bulk deliveries -->
+        <div id="delivery-accounts-wrapper">
+            <!-- Dynamically generated in JS -->
+        </div>
+
+        <!-- Global Note Box -->
+        <div class="notification-box" style="text-align: left; background-color: rgba(255, 87, 1, 0.04); border-color: rgba(255, 87, 1, 0.2); margin-bottom: 32px;">
+            <i class="ti ti-alert-circle"></i>
+            <div class="notification-text">
+                <strong>Catatan Khusus:</strong> <span id="delivery-note">Catatan global lisensi premium.</span>
+            </div>
+        </div>
+
+        <!-- Login Steps Preview -->
+        <div class="success-steps-box">
+            <h3 class="success-steps-title">Tata Cara Login Akun</h3>
+            <div id="delivery-steps-list">
+                <!-- Dynamically Rendered Steps -->
+            </div>
+        </div>        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px;">
+            <button class="btn-cta" id="btn-download-txt" onclick="downloadAccountsTxt()" style="background-color: #10B981; border: none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);">
+                <i class="ti ti-download" style="background: none; width: auto; height: auto;"></i> Download Akun (.txt)
+            </button>
+            <button class="btn-cta" onclick="resetToLandingPage()" style="margin-top: 0; background-color: var(--color-primary);">
+                <i class="ti ti-arrow-left" style="background: none; width: auto; height: auto;"></i> Kembali ke Toko
+            </button>
+        </div>
+    </div>   <!-- VIEW 2 — Admin Dashboard                                          -->
+    <!-- ================================================================= -->
+    <div id="view-admin" class="app-view">
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <div class="sidebar-brand">
+                    <div class="sidebar-brand-title">BrannMotion<span>.</span></div>
+                    <span class="sidebar-brand-sub">Admin Panel v1.0</span>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('dashboard', this)" class="sidebar-link active">
+                            <i class="ti ti-layout-dashboard"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('tambah-akun', this)" class="sidebar-link">
+                            <i class="ti ti-plus"></i> Tambah Akun
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('daftar-akun', this)" class="sidebar-link">
+                            <i class="ti ti-list"></i> Daftar Akun
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('riwayat-pembelian', this)" class="sidebar-link">
+                            <i class="ti ti-history"></i> Riwayat Pembelian
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('catatan-global', this)" class="sidebar-link">
+                            <i class="ti ti-note"></i> Catatan Global
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('tata-cara', this)" class="sidebar-link">
+                            <i class="ti ti-arrow-loop-right"></i> Tata Cara Login
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a onclick="switchAdminSubpage('users', this)" class="sidebar-link">
+                            <i class="ti ti-users"></i> Daftar User
+                        </a>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div>User Logged:</div>
+                    <div style="color: #ffffff; font-weight: 500; margin-top: 2px;">BrannMotion Admin</div>
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <main class="admin-main">
+                <!-- Topbar -->
+                <header class="admin-topbar">
+                    <h2 class="admin-page-title" id="admin-header-title">Dashboard Overview</h2>
+                    <div class="topbar-actions">
+                        <span class="pill-badge pill-success"><i class="ti ti-circle-filled"></i> STATUS: ONLINE</span>
+                        <button class="btn-topbar-primary" onclick="switchAdminSubpage('tambah-akun')">
+                            <i class="ti ti-plus"></i> Tambah Akun
+                        </button>
+                        <button class="btn-back-shop" onclick="switchView('landing')">
+                            <i class="ti ti-arrow-back-up"></i> Kembali ke Toko
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Sub-page Content Box -->
+                <div class="admin-content-area">
+                    
+                    <!-- SUB-PAGE 1: Dashboard -->
+                    <div id="subpage-dashboard" class="admin-subpage active">
+                        <div class="dashboard-grid">
+                            <div class="admin-card">
+                                <div class="stat-card-title">Total Akun</div>
+                                <div class="stat-card-value" id="stat-total" style="color: #ffffff">0</div>
+                            </div>
+                            <div class="admin-card">
+                                <div class="stat-card-title">Tersedia</div>
+                                <div class="stat-card-value" id="stat-tersedia" style="color: var(--color-success)">0</div>
+                            </div>
+                            <div class="admin-card">
+                                <div class="stat-card-title">Terpakai</div>
+                                <div class="stat-card-value" id="stat-terpakai" style="color: var(--color-primary)">0</div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-row-2">
+                            <!-- Recent Accounts Table Card -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-clock"></i> Akun Terbaru</h3>
+                                <div class="table-responsive">
+                                    <table class="admin-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Gmail</th>
+                                                <th>Link Akses</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dashboard-recent-table">
+                                            <!-- Dynamically loaded -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Note Preview Card -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-file-text"></i> Catatan Aktif</h3>
+                                <div class="global-note-preview">
+                                    <span class="global-note-badge">GLOBAL</span>
+                                    <p class="global-note-content-text" id="dashboard-note-text">Memuat...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 2: Tambah Akun -->
+                    <div id="subpage-tambah-akun" class="admin-subpage">
+                        <div class="admin-card" style="max-width: 800px;">
+                            <div class="tabs-header">
+                                <button class="tab-btn active" onclick="switchTab('tab-manual', this)">Input Manual</button>
+                                <button class="tab-btn" onclick="switchTab('tab-import', this)">Import File</button>
+                            </div>
+
+                            <!-- Pane 1: Manual -->
+                            <div id="tab-manual" class="tab-pane active">
+                                <form id="form-add-manual" onsubmit="submitManualAccount(event)">
+                                    <div class="form-group">
+                                        <label class="form-label-mono">Gmail Akun</label>
+                                        <input type="email" id="manual-gmail" class="form-input" placeholder="pembeli@gmail.com" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label-mono">Link Akses / Link Aktivasi</label>
+                                        <input type="url" id="manual-link" class="form-input" placeholder="https://alight.link/xxxxx" required>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 24px;">
+                                        <label class="form-label-mono">Catatan Khusus (Opsional)</label>
+                                        <textarea id="manual-note" class="form-textarea" placeholder="Tambahkan catatan khusus..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-submit-action">
+                                        <i class="ti ti-device-floppy"></i> Simpan Akun
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Pane 2: Import -->
+                            <div id="tab-import" class="tab-pane">
+                                <div class="mono-code-block">
+Format File CSV/TXT:
+gmail,link_akses
+contoh1@gmail.com,https://alight.link/a
+contoh2@gmail.com,https://alight.link/b
+                                </div>
+                                <div class="upload-dashed-box">
+                                    <i class="ti ti-cloud-upload"></i>
+                                    <span>Klik atau Seret file CSV/TXT ke area ini</span>
+                                    <span class="upload-note">Hanya file berekstensi .csv atau .txt</span>
+                                    <input type="file" id="import-file-input" class="upload-hidden-input" accept=".csv,.txt" onchange="handleFileImport(event)">
+                                </div>
+
+                                <!-- Parsed Output Preview -->
+                                <div id="import-preview-box" class="preview-import-container" style="display: none;">
+                                    <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+                                        <span>Preview Data Impor (<span id="import-count">0</span> baris)</span>
+                                        <button class="btn-submit-action" style="padding: 6px 12px; font-size: 12px;" onclick="confirmBulkImport()">Konfirmasi Impor</button>
+                                    </h4>
+                                    <div class="table-responsive">
+                                        <table class="admin-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Gmail</th>
+                                                    <th>Link Akses</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="import-preview-table">
+                                                <!-- Dynamic preview -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 3: Daftar Akun -->
+                    <div id="subpage-daftar-akun" class="admin-subpage">
+                        <div class="admin-card">
+                            <div class="table-filter-bar">
+                                <div class="search-input-wrapper">
+                                    <i class="ti ti-search"></i>
+                                    <input type="text" id="search-accounts" class="search-input" placeholder="Cari email..." oninput="renderDaftarAkunTable()">
+                                </div>
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <select id="filter-status" class="filter-select" onchange="renderDaftarAkunTable()">
+                                        <option value="all">Semua Status</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Terpakai">Terpakai</option>
+                                        <option value="Pending">Pending</option>
+                                    </select>
+                                    <button class="btn-back-shop" onclick="exportCSV()" style="padding: 9px 14px; font-size: 12px;">
+                                        <i class="ti ti-file-export"></i> Ekspor CSV
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Gmail</th>
+                                            <th>Link Akses</th>
+                                            <th>Status</th>
+                                            <th style="width: 140px; text-align: center;">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="daftar-akun-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 4: Catatan Global -->
+                    <div id="subpage-catatan-global" class="admin-subpage">
+                        <div class="layout-split">
+                            <!-- Editor -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-edit"></i> Edit Catatan Global</h3>
+                                <form id="form-global-note" onsubmit="submitGlobalNote(event)">
+                                    <div class="form-group" style="margin-bottom: 20px;">
+                                        <label class="form-label-mono">Isi Catatan</label>
+                                        <textarea id="global-note-textarea" class="form-textarea" style="height: 180px;" required placeholder="Ketik ketentuan pemakaian akun..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-submit-action">
+                                        <i class="ti ti-device-floppy"></i> Simpan Catatan
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Live preview -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-eye"></i> Preview Catatan Customer</h3>
+                                <div class="notification-box" style="text-align: left; background-color: rgba(255, 87, 1, 0.04); border-color: rgba(255, 87, 1, 0.2); margin-top: 12px;">
+                                    <i class="ti ti-alert-circle"></i>
+                                    <div class="notification-text">
+                                        <strong>Catatan Khusus:</strong> <span id="note-preview-display">Memuat preview...</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="receipt-mock-container" style="margin-top: 24px;">
+                                    <div class="receipt-mock-title">Mockup Pengiriman Kredensial</div>
+                                    <div class="credential-item">
+                                        <div class="credential-label">Gmail Akun</div>
+                                        <div class="credential-value-wrapper">
+                                            <span class="credential-val-text">contoh@gmail.com</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 5: Tata Cara Login -->
+                    <div id="subpage-tata-cara" class="admin-subpage">
+                        <div class="layout-split">
+                            <!-- Editor -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-list-details"></i> Kelola Tata Cara Login</h3>
+                                <div id="step-rows-container">
+                                    <!-- Dynamic step editor items -->
+                                </div>
+                                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                                    <button class="btn-back-shop" onclick="addNewStepField()">
+                                        <i class="ti ti-plus"></i> Tambah Langkah
+                                    </button>
+                                    <button class="btn-submit-action" onclick="saveLoginSteps()">
+                                        <i class="ti ti-device-floppy"></i> Simpan Langkah
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Live phone layout mockup -->
+                            <div class="admin-card">
+                                <h3 class="dashboard-section-title"><i class="ti ti-device-mobile"></i> Live Preview Customer</h3>
+                                <div class="receipt-mock-container">
+                                    <div class="receipt-mock-title">Tata Cara Login Akun</div>
+                                    <div id="steps-preview-display">
+                                        <!-- Live step updates preview -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 6: Riwayat Pembelian -->
+                    <div id="subpage-riwayat-pembelian" class="admin-subpage">
+                        <div class="admin-card">
+                            <div class="table-filter-bar">
+                                <div class="search-input-wrapper">
+                                    <i class="ti ti-search"></i>
+                                    <input type="text" id="search-purchases" class="search-input" placeholder="Cari email atau Ref ID..." oninput="renderRiwayatPembelianTable()">
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ref ID</th>
+                                            <th>Email Pembeli</th>
+                                            <th>Jumlah</th>
+                                            <th>Total Bayar</th>
+                                            <th>Akun yang Terbeli</th>
+                                            <th>Tanggal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="riwayat-pembelian-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PAGE 7: Daftar User -->
+                    <div id="subpage-users" class="admin-subpage">
+                        <div class="admin-card">
+                            <div class="table-filter-bar">
+                                <div class="search-input-wrapper">
+                                    <i class="ti ti-search"></i>
+                                    <input type="text" id="search-users" class="search-input" placeholder="Cari email user..." oninput="renderAdminUsersTable()">
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Email User</th>
+                                            <th>WhatsApp</th>
+                                            <th>Total Transaksi</th>
+                                            <th>Total Akun</th>
+                                            <th>Tanggal Bergabung</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="users-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- ================================================================= -->
+    <!-- AUTHENTICATION GATE MODAL (ADMIN ACCESS)                          -->
+    <!-- ================================================================= -->
+    <div id="modal-admin-auth" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal('modal-admin-auth')"><i class="ti ti-x"></i></button>
+            <div class="modal-header-icon" style="background-color: var(--color-primary-light); color: var(--color-primary);">
+                <i class="ti ti-lock"></i>
+            </div>
+            <h3 class="modal-title">Admin Access Gate</h3>
+            <p class="modal-subtitle">Masuk ke dashboard pengelolaan BrannMotion.</p>
+            <form id="admin-auth-form" onsubmit="handleAdminAuth(event)">
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label-mono">Username Admin</label>
+                    <input type="text" id="admin-username" class="form-input" placeholder="Username" autocomplete="username" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label-mono">Password Admin</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="modal-action-btn btn-modal-dark">
+                    Masuk ke Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- PAYMENT MODAL (QRIS CODE DISPLAY)                                 -->
+    <!-- ================================================================= -->
+    <div id="modal-payment" class="modal-overlay">
+        <div class="modal-card" style="max-width: 440px; border-top: 3px solid var(--color-primary); padding: 28px 24px;">
+            <button class="modal-close" onclick="cancelPayment()"><i class="ti ti-x"></i></button>
+            <div class="modal-header-icon" style="background-color: var(--color-primary-light); color: var(--color-primary); width: 44px; height: 44px; font-size: 20px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                <i class="ti ti-qrcode"></i>
+            </div>
+            <h3 class="modal-title" style="font-size: 18px; font-weight: 700; font-family: var(--font-display);">Pembayaran QRIS</h3>
+            <p class="modal-subtitle" style="font-size: 12px; margin-bottom: 20px;">Pindai kode QRIS di bawah menggunakan GoPay, OVO, Dana, LinkAja, ShopeePay, atau Mobile Banking Anda.</p>
+
+            <!-- QRIS Code Image Wrapper -->
+            <div style="background: #ffffff; padding: 12px; border-radius: var(--radius-md); box-shadow: 0 4px 24px rgba(0,0,0,0.3); width: 220px; margin: 0 auto 16px auto; display: flex; align-items: center; justify-content: center;">
+                <img id="qris-image-render" src="" alt="QRIS Code" style="width: 100%; height: auto; display: block; border-radius: 4px;">
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="qris-countdown" style="font-size: 13px; color: var(--color-danger); font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; justify-content: center;">
+                <i class="ti ti-clock"></i> Batas Waktu Bayar: <span id="qris-timer">30:00</span>
+            </div>
+
+            <!-- Details Box -->
+            <div class="payment-info-box" style="background: rgba(6, 9, 17, 0.45); border: var(--color-border-hairline); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 20px;">
+                <div class="payment-info-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="payment-info-label" style="font-size: 12px; color: var(--color-text-muted);">Total Harga</span>
+                    <span class="payment-info-val amount-highlight" id="pay-amount" style="font-size: 16px; font-weight: 800; color: var(--color-primary);">Rp 3.000</span>
+                </div>
+                <div class="payment-info-row" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="payment-info-label" style="font-size: 12px; color: var(--color-text-muted);">Ref ID Transaksi</span>
+                    <span class="payment-info-val" id="pay-ref" style="font-size: 12px; color: #ffffff; font-weight: 700; font-family: var(--font-mono);">QRIS12345678</span>
+                </div>
+            </div>
+
+            <button type="button" class="modal-action-btn btn-modal-cancel" onclick="cancelPayment()" style="padding: 10px 14px; font-size: 13px; font-weight: 700;">
+                Batalkan Transaksi
+            </button>
+
+            <!-- Spinner / Status Polling -->
+            <div class="qris-status-box" style="border-top: 1px dashed rgba(255,255,255,0.06); padding-top: 14px; margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px; color: var(--color-text-muted);">
+                <span class="qris-spinner" style="width: 14px; height: 14px; border: 2px solid rgba(255, 94, 0, 0.2); border-top-color: var(--color-primary); border-radius: 50%; animation: spin 1s infinite linear;"></span>
+                <span>Menunggu mutasi mutasi gateway diverifikasi...</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Floating WhatsApp Button (Hubungi Owner) -->
+    <a href="https://wa.me/6289621484600" target="_blank" rel="noopener" class="floating-wa-btn" id="owner-wa-button" title="Hubungi Owner">
+        <i class="ti ti-brand-whatsapp"></i>
+        <span>Hubungi Owner</span>
+    </a>
+
+
+    <!-- ================================================================= -->
+    <!-- TOAST NOTIFICATION CONTAINER                                      -->
+    <!-- ================================================================= -->
+    <div id="toast-root" class="toast-stack"></div>
+
+
+    <!-- ================================================================= -->
+    <!-- FRONTEND APP LOGIC                                               -->
+    <!-- ================================================================= -->
+    <script src="/js/app.js" defer></script>
+</body>
+      </html>
